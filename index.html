@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<h1>📦 Inventory Management Dashboard</h1>
+
+<div class="card-container">
+
+    <div class="card">
+        <h2>{{ total_products }}</h2>
+        <p>Total Products</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ total_stock }}</h2>
+        <p>Total Stock</p>
+    </div>
+
+    <div class="card">
+        <h2>₹{{ total_value }}</h2>
+        <p>Inventory Value</p>
+    </div>
+
+</div>
+
+<a href="/add" class="btn">
+    + Add Product
+</a>
+
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for product in products %}
+
+    <tr>
+
+        <td>{{ product.id }}</td>
+
+        <td>{{ product.name }}</td>
+
+        <td>{{ product.quantity }}</td>
+
+        <td>₹{{ product.price }}</td>
+
+        <td>
+
+        {% if product.quantity < 5 %}
+
+            <span class="low-stock">
+                Low Stock
+            </span>
+
+        {% else %}
+
+            <span class="in-stock">
+                In Stock
+            </span>
+
+        {% endif %}
+
+        </td>
+
+        <td>
+
+            <a
+            class="edit-btn"
+            href="/edit/{{product.id}}">
+            Edit
+            </a>
+
+            <a
+            class="delete-btn"
+            href="/delete/{{product.id}}">
+            Delete
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+```
+
+</div>
+
+</body>
+
+</html>
